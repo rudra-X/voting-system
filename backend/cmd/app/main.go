@@ -15,5 +15,5 @@ func main() {
 }
 
 func loadConfig(globalConfigs *utils.Config) {
-	globalConfigs.JwtSecretKey := os.Getenv("")
+	globalConfigs.JwtSecretKey = os.Getenv("JWT_SECRET_KEY")
 }
