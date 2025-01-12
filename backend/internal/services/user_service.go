@@ -19,6 +19,7 @@ func GetUsers(c *gin.Context) {
 func RegisterUser(c *gin.Context) {
 	var newUser models.User
 	if err := c.BindJSON(&newUser); err != nil {
+        //TODO::throw exception 400 as incoming request body was not able to map
 		return
 	}
 
@@ -31,6 +32,8 @@ func RegisterUser(c *gin.Context) {
 
 	userId := getRandUserId()
 	newUser.UserId = userId
+    
+    //TODO::VSD Accept password as well
     newUser.SetPassword()
 	Users[newUser.Email] = newUser
 	c.IndentedJSON(http.StatusCreated, maps.Values(Users))

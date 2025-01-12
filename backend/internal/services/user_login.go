@@ -16,6 +16,7 @@ func Login(c *gin.Context) {
 	var loginRequestDto dtos.LoginRequestDto
 
 	if err := c.BindJSON(&loginRequestDto); err != nil {
+		//TODO::throw exception 400 as incoming request body was not able to map
 		return
 	}
 
@@ -53,7 +54,7 @@ func Login(c *gin.Context) {
 }
 
 func createJWT(userId string) (string, error) {
-	// Set the claims (payload)
+
 	claims := &dtos.JwtClaimsDto{
 		UserId: userId,
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -61,6 +62,7 @@ func createJWT(userId string) (string, error) {
 			Issuer:    os.Getenv("APP_NAME"),
 		},
 	}
+
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("Error loading .env file")
 	}

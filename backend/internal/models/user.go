@@ -13,5 +13,5 @@ func (user *User) SetPassword() {
 }
 
 func (user User) ComparePassword(password string) bool {
-	return user.password == password
+return user.password == password
 }
